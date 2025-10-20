@@ -1,0 +1,132 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply scroll-smooth;
+  }
+  
+  body {
+    @apply bg-white;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r;
+  }
+  
+  .card-hover {
+    @apply transition-all duration-300 hover:scale-105 hover:shadow-xl;
+  }
+  
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-in-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* Leaflet Custom Styles */
+.leaflet-container {
+  font-family: inherit;
+  background: #f5f5f5;
+}
+
+.leaflet-popup-content-wrapper {
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.custom-disaster-marker {
+  background: transparent !important;
+  border: none !important;
+}
+
+.disaster-marker:hover {
+  transform: scale(1.15);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Leaflet cluster styles */
+.leaflet-cluster-anim .leaflet-marker-icon,
+.leaflet-cluster-anim .leaflet-marker-shadow {
+  transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+}
+
+.marker-cluster {
+  background-color: rgba(181, 226, 140, 0.6);
+  border-radius: 50%;
+  border: 2px solid #ffffff;
+}
+
+.marker-cluster-earthquake {
+  background-color: rgba(239, 68, 68, 0.6);
+  color: white;
+}
+
+.marker-cluster-flood {
+  background-color: rgba(59, 130, 246, 0.6);
+  color: white;
+}
+
+.marker-cluster-fire {
+  background-color: rgba(249, 115, 22, 0.6);
+  color: white;
+}
+
+.marker-cluster-cyclone {
+  background-color: rgba(139, 92, 246, 0.6);
+  color: white;
+}
+
+.marker-cluster > div {
+  background-color: rgba(255, 255, 255, 0.9);
+  color: #333;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 30px;
+}
+
+/* Custom popup styles */
+.leaflet-popup-content {
+  margin: 0;
+  padding: 0;
+}
+
+.leaflet-popup-tip {
+  background: white;
+}
+
+/* Zoom controls */
+.leaflet-control-zoom {
+  border: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.leaflet-control-zoom a {
+  background-color: white;
+  color: #374151;
+  border: none;
+}
+
+.leaflet-control-zoom a:hover {
+  background-color: #f3f4f6;
+}
+
+/* Attribution */
+.leaflet-control-attribution {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 4px;
+}
+
