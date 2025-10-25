@@ -27,16 +27,12 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     container_name: dias-backend
+    env_file:
+      - ./backend/.env
     environment:
       NODE_ENV: production
       PORT: 5000
       DATABASE_URL: postgresql://postgres:postgres@postgres:5432/dias
-      JWT_SECRET: development_secret_key_change_in_production
-      JWT_EXPIRES_IN: 7d
-      # AWS SNS Configuration
-      AWS_REGION: ${AWS_REGION:-ap-south-1}
-      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID:-}
-      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY:-}
     ports:
       - "5000:5000"
     depends_on:

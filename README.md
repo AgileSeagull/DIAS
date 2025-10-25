@@ -16,18 +16,12 @@
 - [Tech Stack](#-tech-stack)
 - [Prerequisites](#-prerequisites)
 - [Installation Guide](#-installation-guide)
-  - [Step 1: Clone the Repository](#step-1-clone-the-repository)
-  - [Step 2: Install PostgreSQL](#step-2-install-postgresql)
-  - [Step 3: Setup AWS Account](#step-3-setup-aws-account)
-  - [Step 4: Configure Environment](#step-4-configure-environment)
-  - [Step 5: Install Dependencies](#step-5-install-dependencies)
-  - [Step 6: Initialize Database](#step-6-initialize-database)
-  - [Step 7: Run the Application](#step-7-run-the-application)
+  - [Option 1: Docker Setup (Recommended)](#-option-1-docker-setup-recommended)
+  - [Option 2: Local Development Setup](#-option-2-local-development-setup)
 - [Usage](#-usage)
 - [Project Structure](#-project-structure)
 - [API Documentation](#-api-documentation)
 - [Troubleshooting](#-troubleshooting)
-- [Contributing](#-contributing)
 - [License](#-license)
 
 ---
@@ -115,36 +109,173 @@ DIAS aggregates disaster data from trusted sources:
 
 Before you begin, make sure you have the following installed on your system:
 
-| Tool | Version | Required | Download |
-|------|---------|----------|----------|
-| **Node.js** | 18+ | ✅ Yes | [Download](https://nodejs.org/) |
-| **npm** | 9+ | ✅ Yes | (Comes with Node.js) |
-| **PostgreSQL** | 15+ | ✅ Yes | [Download](https://www.postgresql.org/download/) |
-| **Git** | Latest | ✅ Yes | [Download](https://git-scm.com/) |
-| **AWS Account** | - | ✅ Yes | [Sign Up](https://aws.amazon.com/) |
-| **Docker** (Optional) | 20+ | ⚪ Optional | [Download](https://www.docker.com/) |
+| Tool | Version | Required For | Download |
+|------|---------|--------------|----------|
+| **Docker** | 20+ | 🐳 Docker Setup | [Download](https://www.docker.com/) |
+| **Node.js** | 18+ | 💻 Local Setup | [Download](https://nodejs.org/) |
+| **npm** | 9+ | 💻 Local Setup | (Comes with Node.js) |
+| **PostgreSQL** | 15+ | 💻 Local Setup | [Download](https://www.postgresql.org/download/) |
+| **Git** | Latest | Both | [Download](https://git-scm.com/) |
+| **AWS Account** | - | Both | [Sign Up](https://aws.amazon.com/) |
 
 ### **Check if you have them installed:**
 
 ```bash
-# Check Node.js version
-node --version  # Should show v18.x.x or higher
+# Check Docker (for Docker setup)
+docker --version        # Should show 20.x.x or higher
+docker compose version  # Should show 2.x.x or higher
 
-# Check npm version
+# Check Node.js (for local setup)
+node --version  # Should show v18.x.x or higher
 npm --version   # Should show 9.x.x or higher
 
-# Check PostgreSQL
+# Check PostgreSQL (for local setup)
 psql --version  # Should show 15.x or higher
 
 # Check Git
 git --version
 ```
 
+> **💡 Recommendation:** If you're new to DIAS or want the quickest setup, use **Docker** (Option 1). You only need Docker installed!
+
 ---
 
 ## 🚀 Installation Guide
 
-Follow these steps carefully to set up DIAS on your local machine.
+DIAS can be run in two ways:
+1. **🐳 Using Docker (Recommended)** - Easy setup, no local dependencies
+2. **💻 Local Development** - For development and customization
+
+Choose your preferred method:
+
+---
+
+## 🐳 **Option 1: Docker Setup (Recommended)**
+
+The easiest way to run DIAS is using Docker. This method doesn't require you to install PostgreSQL, Node.js, or any other dependencies locally.
+
+### **Prerequisites for Docker:**
+- **Docker** (v20.10+) - [Download](https://www.docker.com/get-started)
+- **Docker Compose** (usually comes with Docker Desktop) - [Download](https://docs.docker.com/compose/install/)
+
+### **Step 1: Clone the Repository**
+
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/DIAS.git
+
+# Navigate to project directory
+cd DIAS
+```
+
+### **Step 2: Configure Environment Variables**
+
+```bash
+# Navigate to backend directory
+cd backend
+
+# Copy the environment template
+cp .env.example .env
+
+# Edit the .env file with your AWS credentials
+nano .env  # or use your preferred editor
+```
+
+Edit `backend/.env` with your AWS credentials:
+
+```env
+# AWS Configuration (from Step 3 above)
+AWS_REGION=ap-south-1
+AWS_ACCESS_KEY_ID=your_aws_access_key_id_here
+AWS_SECRET_ACCESS_KEY=your_aws_secret_access_key_here
+
+# JWT Configuration (generate a random secret)
+JWT_SECRET=your_super_secret_jwt_key
+```
+
+```bash
+# Return to project root
+cd ..
+```
+
+### **Step 3: Build and Run with Docker**
+
+```bash
+# Build and start all services
+./docker-start.sh
+
+# Or build images explicitly first
+docker compose build
+docker compose up -d
+```
+
+**That's it!** Your application is now running:
+- 🌐 **Frontend**: http://localhost:3000
+- 🔧 **Backend API**: http://localhost:5000
+- 🗄️ **PostgreSQL**: localhost:5432
+
+### **Docker Commands Reference**
+
+```bash
+# Start services
+./docker-start.sh           # Start in production mode
+./docker-start.sh --dev     # Start in development mode (hot reload)
+./docker-start.sh --build   # Rebuild images and start
+
+# Stop services
+./docker-stop.sh            # Stop all containers
+./docker-stop.sh --force    # Force kill all containers
+./docker-stop.sh --volumes  # Stop and remove all data
+
+# View logs
+docker compose logs -f              # All services
+docker compose logs -f backend      # Backend only
+docker compose logs -f frontend     # Frontend only
+
+# Rebuild after code changes
+docker compose down
+docker compose build --no-cache
+docker compose up -d
+
+# Check container status
+docker compose ps
+
+# Access backend container shell
+docker exec -it dias-backend /bin/sh
+
+# Access database
+docker exec -it dias-postgres psql -U postgres -d dias
+```
+
+### **Docker Troubleshooting**
+
+**Issue: Port already in use**
+```bash
+# Stop existing containers
+docker compose down
+
+# Kill processes on ports
+sudo lsof -ti:3000 | xargs kill -9
+sudo lsof -ti:5000 | xargs kill -9
+sudo lsof -ti:5432 | xargs kill -9
+```
+
+**Issue: Containers won't start**
+```bash
+# Check logs
+docker compose logs
+
+# Clean slate (removes all data)
+docker compose down -v
+docker compose build --no-cache
+docker compose up -d
+```
+
+---
+
+## 💻 **Option 2: Local Development Setup**
+
+For development, customization, or if you prefer running services natively.
 
 ### **Step 1: Clone the Repository**
 
@@ -1026,9 +1157,9 @@ Future enhancements planned for DIAS:
 ┌─────────────────────────────────────────────────────────────────┐
 │                    USERS (Web Browser)                          │
 │                                                                 │
-│   ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐       │
-│   │   Home   │  │ Live Map │  │ Subscribe│  │  Login   │       │
-│   └──────────┘  └──────────┘  └──────────┘  └──────────┘       │
+│   ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐        │
+│   │   Home   │  │ Live Map │  │ Subscribe│  │  Login   │        │
+│   └──────────┘  └──────────┘  └──────────┘  └──────────┘        │
 └─────────────────────────┬───────────────────────────────────────┘
                           │
                           │ HTTP/REST API
@@ -1036,8 +1167,8 @@ Future enhancements planned for DIAS:
 ┌─────────────────────────────────────────────────────────────────┐
 │                 FRONTEND (React + Vite)                         │
 │                                                                 │
-│  • React Router  • Leaflet Maps  • Axios  • Tailwind CSS       │
-│  • Context API   • JWT Auth      • Icons  • Animations         │
+│  • React Router  • Leaflet Maps  • Axios  • Tailwind CSS        │
+│  • Context API   • JWT Auth      • Icons  • Animations          │
 └─────────────────────────┬───────────────────────────────────────┘
                           │
                           │ REST API (axios)
