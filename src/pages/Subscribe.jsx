@@ -4,8 +4,7 @@ import { FiMail, FiGlobe, FiCheck, FiAlertCircle, FiLoader, FiMapPin, FiUsers, F
 import apiClient from '../services/api';
 
 const Subscribe = () => {
-  const { user, isAuthenticated } = useAuth();
-  const [email, setEmail] = useState('');
+  const { user } = useAuth();
   const [selectedCountry, setSelectedCountry] = useState('');
   const [countries, setCountries] = useState([]);
   const [stats, setStats] = useState(null);
@@ -14,55 +13,25 @@ const Subscribe = () => {
   const [loadingCountries, setLoadingCountries] = useState(true);
   const [message, setMessage] = useState({ type: '', text: '' });
 
-  // Define loadMySubscriptions first before useEffect that depends on it
+  // Load subscriptions for authenticated user
   const loadMySubscriptions = useCallback(async () => {
     try {
-      if (!email) {
-        console.log('No email set, skipping subscription load');
-        setMySubscriptions([]);
-        return;
-      }
-
-      console.log('Loading subscriptions for email:', email);
-      
-      // Pass email as query parameter
       const response = await apiClient.get('/api/subscribe/my-subscriptions', {
-        params: { email }
+        params: { email: user?.email }
       });
-
-      console.log('API response:', response.data);
-      const subscriptions = response.data.data || [];
-      
-      // Filter by email to ensure we only show subscriptions for this email
-      const filtered = subscriptions.filter(sub => sub.email === email);
-      
-      console.log('Filtered subscriptions:', filtered.length);
-      setMySubscriptions(filtered);
+      setMySubscriptions(response.data.data || []);
     } catch (error) {
       console.error('Failed to load subscriptions:', error);
       setMySubscriptions([]);
     }
-  }, [email]);
+  }, [user?.email]);
 
   // Load countries and stats on mount
   useEffect(() => {
     loadCountries();
     loadStats();
-    
-    if (isAuthenticated) {
-      setEmail(user?.email || '');
-    }
-  }, [isAuthenticated, user]);
-
-  // Load subscriptions whenever email changes
-  useEffect(() => {
-    if (email) {
-      console.log('📧 Loading subscriptions for:', email);
-      loadMySubscriptions();
-    } else {
-      setMySubscriptions([]);
-    }
-  }, [email, loadMySubscriptions]);
+    loadMySubscriptions();
+  }, [loadMySubscriptions]);
 
   const loadCountries = async () => {
     try {
@@ -92,8 +61,7 @@ const Subscribe = () => {
     }
 
     try {
-      // Always pass email for validation
-      const params = { email: email || (isAuthenticated && user?.email) };
+      const params = { email: user?.email };
       
       if (!params.email) {
         setMessage({
@@ -130,16 +98,16 @@ const Subscribe = () => {
     e.preventDefault();
     setMessage({ type: '', text: '' });
 
-    if (!email || !selectedCountry) {
-      setMessage({ type: 'error', text: 'Please enter your email and select a country' });
+    if (!selectedCountry) {
+      setMessage({ type: 'error', text: 'Please select a country' });
       return;
     }
 
     setLoading(true);
 
     try {
-      const response = await apiClient.post('/api/subscribe', {
-        email,
+      await apiClient.post('/api/subscribe', {
+        email: user?.email,
         country: selectedCountry,
       });
 
@@ -148,19 +116,11 @@ const Subscribe = () => {
         text: 'Subscription request sent! Please check your email (including spam folder) to confirm your subscription.',
       });
 
-      // Clear form
-      if (!isAuthenticated) {
-        setEmail('');
-      }
       setSelectedCountry('');
-
-      // Reload subscriptions if authenticated
-      if (isAuthenticated) {
-        setTimeout(() => loadMySubscriptions(), 1000);
-      }
-
-      // Reload stats
-      setTimeout(() => loadStats(), 1000);
+      setTimeout(() => {
+        loadMySubscriptions();
+        loadStats();
+      }, 1000);
     } catch (error) {
       const errorMessage = error.response?.data?.message || 'Failed to subscribe. Please try again.';
       setMessage({ type: 'error', text: errorMessage });
@@ -204,32 +164,29 @@ const Subscribe = () => {
             </div>
           </div>
 
-          {/* My Subscriptions (show if authenticated or email entered) */}
-          {(isAuthenticated || email) && (
-            <div className="bg-white rounded-xl shadow-lg p-6">
-              <div className="flex items-center space-x-4">
-                <div className="flex-shrink-0">
-                  <div className="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center">
-                    <FiBell className="w-7 h-7 text-green-600" />
-                  </div>
-                </div>
-                <div>
-                  <div className="text-3xl font-bold text-gray-900 mb-1">
-                    {mySubscriptions.filter(s => s.status === 'confirmed').length}
-                  </div>
-                  <div className="text-sm text-gray-600">My Active Subscriptions</div>
+          {/* My Active Subscriptions */}
+          <div className="bg-white rounded-xl shadow-lg p-6">
+            <div className="flex items-center space-x-4">
+              <div className="flex-shrink-0">
+                <div className="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center">
+                  <FiBell className="w-7 h-7 text-green-600" />
                 </div>
               </div>
+              <div>
+                <div className="text-3xl font-bold text-gray-900 mb-1">
+                  {mySubscriptions.filter(s => s.status === 'confirmed').length}
+                </div>
+                <div className="text-sm text-gray-600">My Active Subscriptions</div>
+              </div>
             </div>
-          )}
+          </div>
         </div>
 
-        {/* My Subscriptions Section (show if authenticated or email entered) */}
-        {(isAuthenticated || email) && (
-          <div className="bg-white rounded-xl shadow-xl p-8 mb-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">
-              My Subscriptions
-            </h2>
+        {/* My Subscriptions Section */}
+        <div className="bg-white rounded-xl shadow-xl p-8 mb-8">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">
+            My Subscriptions
+          </h2>
 
             {mySubscriptions.filter(sub => sub.status !== 'unsubscribed').length === 0 ? (
               <p className="text-gray-600">
@@ -275,8 +232,7 @@ const Subscribe = () => {
                 ))}
               </div>
             )}
-          </div>
-        )}
+        </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Subscription Form */}
@@ -287,9 +243,9 @@ const Subscribe = () => {
               </h2>
 
               <form onSubmit={handleSubscribe} className="space-y-6">
-                {/* Email Input */}
+                {/* Email Display */}
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
                     Email Address
                   </label>
                   <div className="relative">
@@ -298,18 +254,12 @@ const Subscribe = () => {
                     </div>
                     <input
                       type="email"
-                      id="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      required
-                      disabled={isAuthenticated}
-                      className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors disabled:bg-gray-50"
-                      placeholder="you@example.com"
+                      value={user?.email || ''}
+                      disabled
+                      className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg bg-gray-50 text-gray-700"
                     />
                   </div>
-                  {isAuthenticated && (
-                    <p className="mt-1 text-xs text-gray-500">Using your account email</p>
-                  )}
+                  <p className="mt-1 text-xs text-gray-500">Subscriptions will be sent to your account email</p>
                 </div>
 
                 {/* Country Selection */}

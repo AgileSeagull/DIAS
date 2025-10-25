@@ -9,10 +9,39 @@ import {
   FiShare2, FiExternalLink, FiLayers
 } from 'react-icons/fi';
 import { createCustomDisasterIcon, getDisasterBadgeClass, getSeverityBadgeClass } from '../utils/mapIcons';
-import { generateMockDisasters, filterByType, filterBySeverity, filterByTime, countByType } from '../utils/mockDisasters';
-
 // Import Leaflet CSS
 import 'leaflet/dist/leaflet.css';
+
+// Filter helper functions
+const filterByType = (disasters, type) => {
+  if (type === 'all') return disasters;
+  return disasters.filter(d => d.type === type);
+};
+
+const filterBySeverity = (disasters, severity) => {
+  if (severity === 'low') return disasters;
+  const severities = ['low', 'moderate', 'high', 'critical'];
+  const severityIndex = severities.indexOf(severity);
+  return disasters.filter(d => {
+    const disasterSeverityIndex = severities.indexOf(d.severity);
+    return disasterSeverityIndex >= severityIndex;
+  });
+};
+
+const filterByTime = (disasters, hours) => {
+  if (!hours) return disasters;
+  const now = new Date();
+  const cutoff = new Date(now - hours * 60 * 60 * 1000);
+  return disasters.filter(d => new Date(d.timestamp) >= cutoff);
+};
+
+const countByType = (disasters) => {
+  const counts = { earthquake: 0, flood: 0, fire: 0, cyclone: 0, all: disasters.length };
+  disasters.forEach(d => {
+    if (counts[d.type] !== undefined) counts[d.type]++;
+  });
+  return counts;
+};
 
 // Fix for default markers in react-leaflet
 delete L.Icon.Default.prototype._getIconUrl;

@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import DisasterMap from '../components/DisasterMap';
 import { disasterAPI } from '../services/api';
-import { FiRefreshCw, FiCheck, FiAlertCircle } from 'react-icons/fi';
+import { FiRefreshCw, FiCheck, FiAlertCircle, FiHome } from 'react-icons/fi';
 
 const LiveMap = () => {
   const [disasters, setDisasters] = useState([]);
@@ -107,6 +108,15 @@ const LiveMap = () => {
               </p>
             </div>
             <div className="flex items-center space-x-4">
+              {/* Home Button */}
+              <Link
+                to="/"
+                className="flex items-center space-x-2 px-4 py-2 rounded-lg font-medium bg-gray-100 hover:bg-gray-200 text-gray-700 transition-all duration-200 shadow-sm"
+              >
+                <FiHome />
+                <span>Home</span>
+              </Link>
+
               {/* Sync Button */}
               <button
                 onClick={handleSync}

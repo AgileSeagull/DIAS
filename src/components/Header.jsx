@@ -31,7 +31,6 @@ const Header = () => {
   const navigation = [
     { name: 'Home', href: '/' },
     { name: 'Live Map', href: '/map' },
-    { name: 'Alerts', href: '/alerts' },
     { name: 'Subscribe', href: '/subscribe' },
   ];
 
@@ -49,8 +48,8 @@ const Header = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3 group">
-            <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center transform group-hover:rotate-12 transition-transform duration-300">
-              <span className="text-white font-bold text-xl">A</span>
+            <div className="w-10 h-10 bg-gray-100 rounded-lg flex items-center justify-center transform group-hover:rotate-12 transition-transform duration-300">
+              <span className="text-2xl">🌊</span>
             </div>
             <div>
               <h1 className="text-xl font-bold text-gray-900">

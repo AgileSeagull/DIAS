@@ -181,21 +181,68 @@ const getMySubscriptions = async (req, res, next) => {
  */
 const getAvailableCountries = async (req, res, next) => {
   try {
-    // Get countries from SNS topics (already properly extracted)
+    // Get countries from active disasters
+    const { extractCountry } = require('../utils/countryExtractor');
+    
     const result = await query(
-      `SELECT country, disaster_count
-       FROM sns_topics 
-       WHERE disaster_count > 0
-       ORDER BY disaster_count DESC, country ASC`
+      `SELECT DISTINCT location_name, latitude, longitude
+       FROM disasters 
+       WHERE is_active = true
+       ORDER BY location_name`
     );
 
-    // If no SNS topics yet, return empty array
-    // (Topics are created when alert job runs)
+    // Extract unique countries
+    const countriesSet = new Set();
+    
+    for (const disaster of result.rows) {
+      const country = await extractCountry(
+        disaster.location_name,
+        disaster.latitude,
+        disaster.longitude
+      );
+      
+      // Only include valid country names (not descriptions or long text)
+      const isValidCountry = country && 
+          country !== 'Unknown' && 
+          country.length < 50 &&  // Country names shouldn't be too long
+          country.length > 2 &&   // Too short names are likely abbreviations
+          !country.toLowerCase().includes('alert') && 
+          !country.toLowerCase().includes('tropical') &&
+          !country.toLowerCase().includes('category') &&
+          !country.toLowerCase().includes('population') &&
+          !country.toLowerCase().includes('km/h') &&
+          !country.toLowerCase().includes('wind speed') &&
+          !country.toLowerCase().includes('drought') &&
+          !country.toLowerCase().includes('is on') &&
+          !country.toLowerCase().includes('going in') &&
+          !country.toLowerCase().includes('affected by') &&
+          !country.toLowerCase().includes('pacific rise') &&
+          !country.toLowerCase().includes('ridge') &&
+          !country.toLowerCase().includes('ocean') &&
+          !country.toLowerCase().includes('sea') &&
+          !country.match(/^\d/) && // Don't start with numbers
+          !country.match(/^(north|south|east|west|central)\s/i) && // Don't include directional prefixes alone
+          !country.match(/\s(is|in|on|by|the)\s/i); // Don't include sentences
+          
+      if (isValidCountry) {
+        countriesSet.add(country);
+      }
+    }
+
+    // Convert to array and sort
+    const countries = Array.from(countriesSet).sort().map(country => ({
+      country,
+      disaster_count: result.rows.filter(d => {
+        // Count disasters for this country (simplified)
+        return d.location_name.includes(country);
+      }).length
+    }));
+
     res.json({
       success: true,
-      data: result.rows,
-      message: result.rows.length === 0 
-        ? 'No countries available yet. Alert job will populate topics soon.'
+      data: countries,
+      message: countries.length === 0 
+        ? 'No countries with active disasters. Please sync disaster data first.'
         : undefined
     });
   } catch (error) {

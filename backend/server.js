@@ -9,7 +9,6 @@ const { errorHandler, notFoundHandler } = require('./middleware/errorHandler');
 // Import routes
 const disasterRoutes = require('./routes/disasterRoutes');
 const authRoutes = require('./routes/authRoutes');
-const subscriptionRoutes = require('./routes/subscriptionRoutes');
 const dataSyncRoutes = require('./routes/dataSyncRoutes');
 const snsSubscriptionRoutes = require('./routes/snsSubscriptionRoutes');
 
@@ -37,7 +36,6 @@ app.get('/health', (req, res) => {
 // API Routes
 app.use('/api/disasters', disasterRoutes);
 app.use('/api/auth', authRoutes);
-app.use('/api/subscriptions', subscriptionRoutes);
 app.use('/api/sync', dataSyncRoutes);
 app.use('/api/subscribe', snsSubscriptionRoutes);
 

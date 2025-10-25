@@ -24,7 +24,6 @@ const Footer = () => {
             </h3>
             <ul className="space-y-2 text-sm">
               <li><a href="/map" className="text-gray-600 hover:text-blue-600">Live Map</a></li>
-              <li><a href="/alerts" className="text-gray-600 hover:text-blue-600">Active Alerts</a></li>
               <li><a href="/subscribe" className="text-gray-600 hover:text-blue-600">Subscribe</a></li>
             </ul>
           </div>

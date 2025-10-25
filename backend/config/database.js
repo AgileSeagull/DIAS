@@ -4,7 +4,8 @@ require('dotenv').config();
 // Create connection pool
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
-  ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false,
+  // In Docker, PostgreSQL doesn't support SSL by default for internal connections
+  ssl: false,
 });
 
 // Test database connection
