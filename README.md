@@ -162,7 +162,7 @@ The easiest way to run DIAS is using Docker. This method doesn't require you to 
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/DIAS.git
+git clone https://github.com/AgileSeagull/DIAS.git
 
 # Navigate to project directory
 cd DIAS
