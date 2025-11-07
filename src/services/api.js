@@ -1,7 +1,35 @@
 import axios from 'axios';
 
-// Base API configuration
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000';
+// Dynamic API Base URL configuration
+const getApiBaseUrl = () => {
+  // Priority 1: Check runtime config (loaded from config.js)
+  if (window.__RUNTIME_CONFIG__?.API_BASE_URL) {
+    return window.__RUNTIME_CONFIG__.API_BASE_URL;
+  }
+
+  // Priority 2: Check build-time environment variable
+  if (import.meta.env.VITE_API_BASE_URL) {
+    return import.meta.env.VITE_API_BASE_URL;
+  }
+
+  // Priority 3: Auto-detect based on current host
+  const hostname = window.location.hostname;
+  const protocol = window.location.protocol;
+
+  // If running on localhost, use localhost backend
+  if (hostname === 'localhost' || hostname === '127.0.0.1') {
+    return 'http://localhost:5000';
+  }
+
+  // If running on EC2 or any other host, use the same host with port 5000
+  return `${protocol}//${hostname}:5000`;
+};
+
+const API_BASE_URL = getApiBaseUrl();
+
+// Log the API URL being used (helpful for debugging)
+console.log('🌐 API Base URL:', API_BASE_URL);
+console.log('📍 Current Host:', window.location.hostname);
 
 // Create axios instance with default config
 const apiClient = axios.create({
