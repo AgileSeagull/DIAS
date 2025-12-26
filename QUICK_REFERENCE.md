@@ -1,8 +1,8 @@
-# 🚀 DIAS Quick Reference
+# DIAS Quick Reference
 
 Quick commands and tips for working with DIAS.
 
-## 📦 Installation
+## Installation
 
 ```bash
 # Clone and setup
@@ -13,7 +13,7 @@ cp backend/.env.example backend/.env
 npm install && cd backend && npm install && cd ..
 ```
 
-## 🏃 Running the App
+## Running the App
 
 ```bash
 # Start everything
@@ -28,7 +28,7 @@ npm install && cd backend && npm install && cd ..
 ./stop.sh --frontend-only  # Stop only frontend
 ```
 
-## 🐳 Docker Commands
+## Docker Commands
 
 ```bash
 # Development mode (hot reload)
@@ -46,7 +46,7 @@ docker compose down
 docker compose down -v  # Also remove volumes
 ```
 
-## 📊 Database Commands
+## Database Commands
 
 ```bash
 # Connect to database
@@ -65,7 +65,7 @@ CREATE DATABASE dias;
 \i backend/config/sns-schema.sql
 ```
 
-## 🔧 Debugging
+## Debugging
 
 ```bash
 # Check what's running
@@ -85,7 +85,7 @@ npm run dev  # Watch for errors
 psql -U postgres -d dias -c "SELECT 1;"
 ```
 
-## 🧪 Testing API
+## Testing API
 
 ```bash
 # Sync disasters
@@ -103,7 +103,7 @@ curl -X POST http://localhost:5000/api/subscribe \
 curl http://localhost:5000/api/disasters/stats
 ```
 
-## 📝 Common Tasks
+## Common Tasks
 
 ### Add a New API Endpoint
 
@@ -124,19 +124,21 @@ curl http://localhost:5000/api/disasters/stats
 2. Drop and recreate database
 3. Or write migration script
 
-## ⚙️ Environment Variables
+##️ Environment Variables
 
 **Required:**
-- `DB_PASSWORD` - PostgreSQL password
-- `JWT_SECRET` - JWT signing secret
-- `AWS_ACCESS_KEY_ID` - AWS access key
-- `AWS_SECRET_ACCESS_KEY` - AWS secret key
+
+-   `DB_PASSWORD` - PostgreSQL password
+-   `JWT_SECRET` - JWT signing secret
+-   `AWS_ACCESS_KEY_ID` - AWS access key
+-   `AWS_SECRET_ACCESS_KEY` - AWS secret key
 
 **Optional:**
-- `PORT` - Backend port (default: 5000)
-- `AWS_REGION` - AWS region (default: ap-south-1)
 
-## 🔒 AWS Setup Quick Guide
+-   `PORT` - Backend port (default: 5000)
+-   `AWS_REGION` - AWS region (default: ap-south-1)
+
+## AWS Setup Quick Guide
 
 ```bash
 # 1. Create IAM user with AmazonSNSFullAccess
@@ -149,9 +151,10 @@ AWS_SECRET_ACCESS_KEY=...
 # Go to: AWS Console > SES > Verified identities
 ```
 
-## 📦 Dependencies
+## Dependencies
 
 ### Frontend
+
 ```bash
 npm install                    # Install all
 npm install react-leaflet     # Add package
@@ -159,6 +162,7 @@ npm update                    # Update all
 ```
 
 ### Backend
+
 ```bash
 cd backend
 npm install
@@ -166,23 +170,23 @@ npm install express           # Add package
 npm audit fix                 # Fix vulnerabilities
 ```
 
-## 🐛 Common Issues
+## Common Issues
 
-| Issue | Solution |
-|-------|----------|
-| Port in use | `lsof -ti:5000 \| xargs kill -9` |
-| DB connection failed | Check PostgreSQL is running |
-| AWS credentials error | Verify .env file |
-| Map not loading | Click "Sync Data" button |
+| Issue                 | Solution                         |
+| --------------------- | -------------------------------- |
+| Port in use           | `lsof -ti:5000 \| xargs kill -9` |
+| DB connection failed  | Check PostgreSQL is running      |
+| AWS credentials error | Verify .env file                 |
+| Map not loading       | Click "Sync Data" button         |
 
-## 📚 Useful Links
+## Useful Links
 
-- **Backend API**: http://localhost:5000
-- **Frontend**: http://localhost:5173
-- **AWS Console**: https://console.aws.amazon.com
-- **PostgreSQL Docs**: https://www.postgresql.org/docs/
+-   **Backend API**: http://localhost:5000
+-   **Frontend**: http://localhost:5173
+-   **AWS Console**: https://console.aws.amazon.com
+-   **PostgreSQL Docs**: https://www.postgresql.org/docs/
 
-## 🎯 Development Workflow
+## Development Workflow
 
 ```bash
 # 1. Create feature branch
@@ -200,17 +204,17 @@ git push origin feature/my-feature
 # 4. Create pull request on GitHub
 ```
 
-## 🔄 Data Sync Schedule
+## Data Sync Schedule
 
-- **Earthquakes**: Every 10 minutes
-- **Fires**: Every 10 minutes
-- **Floods**: Every 10 minutes
-- **Cyclones**: Every 10 minutes
-- **Alerts**: Every 10 minutes
+-   **Earthquakes**: Every 10 minutes
+-   **Fires**: Every 10 minutes
+-   **Floods**: Every 10 minutes
+-   **Cyclones**: Every 10 minutes
+-   **Alerts**: Every 10 minutes
 
 Configure in: `backend/jobs/`
 
-## 📊 Project Structure Quick View
+## Project Structure Quick View
 
 ```
 DIAS/

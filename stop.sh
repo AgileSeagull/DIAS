@@ -19,7 +19,7 @@ DB_PORT=5433
 # ============================================================================
 
 print_step() {
-    echo -e "${BLUE}▶ $1${NC}"
+    echo -e "${BLUE}$1${NC}"
 }
 
 print_success() {
@@ -27,7 +27,7 @@ print_success() {
 }
 
 print_warning() {
-    echo -e "${YELLOW}⚠ $1${NC}"
+    echo -e "${YELLOW}$1${NC}"
 }
 
 print_error() {
@@ -35,7 +35,7 @@ print_error() {
 }
 
 print_info() {
-    echo -e "${CYAN}ℹ $1${NC}"
+    echo -e "${CYAN}$1${NC}"
 }
 
 # Check if port is in use
@@ -253,7 +253,7 @@ main() {
     done
     
     echo ""
-    print_info "🛑 Stopping DIAS Services"
+    print_info "Stopping DIAS Services"
     echo ""
     
     # Stop services based on options

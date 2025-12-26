@@ -344,7 +344,7 @@ const Subscribe = () => {
               {/* Info Box */}
               <div className="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-100">
                 <h3 className="text-sm font-semibold text-blue-900 mb-2">
-                  📧 How it works:
+                  How it works:
                 </h3>
                 <ul className="text-sm text-blue-800 space-y-1">
                   <li>• You'll receive a confirmation email from AWS</li>

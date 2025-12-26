@@ -3,8 +3,8 @@
  * Runs every hour by default
  */
 
-const cron = require('node-cron');
-const { fetchAllDisasterData } = require('../services/disasterDataFetcher');
+const cron = require("node-cron");
+const { fetchAllDisasterData } = require("../services/disasterDataFetcher");
 
 let syncJob = null;
 
@@ -12,26 +12,26 @@ let syncJob = null;
  * Start the scheduled sync job
  * @param {string} schedule - Cron schedule (default: '0 * * * *' = every hour)
  */
-const startSyncJob = (schedule = '0 * * * *') => {
-  console.log(`📅 Starting scheduled data sync job (${schedule})...`);
+const startSyncJob = (schedule = "0 * * * *") => {
+	console.log(`Starting scheduled data sync job (${schedule})...`);
 
-  syncJob = cron.schedule(schedule, async () => {
-    console.log('\n🕐 Scheduled disaster data sync triggered...');
-    
-    try {
-      const result = await fetchAllDisasterData();
-      console.log('✅ Scheduled sync completed successfully');
-      
-      if (!result.success) {
-        console.warn('⚠️  Some sources failed during scheduled sync');
-      }
-    } catch (error) {
-      console.error('❌ Scheduled sync failed:', error.message);
-    }
-  });
+	syncJob = cron.schedule(schedule, async () => {
+		console.log("\nScheduled disaster data sync triggered...");
 
-  console.log('✅ Sync job started successfully');
-  return syncJob;
+		try {
+			const result = await fetchAllDisasterData();
+			console.log("Scheduled sync completed successfully");
+
+			if (!result.success) {
+				console.warn("⚠️  Some sources failed during scheduled sync");
+			}
+		} catch (error) {
+			console.error("Scheduled sync failed:", error.message);
+		}
+	});
+
+	console.log("Sync job started successfully");
+	return syncJob;
 };
 
 /**
@@ -39,18 +39,18 @@ const startSyncJob = (schedule = '0 * * * *') => {
  * @returns {Promise<object>} Result
  */
 const runSyncNow = async () => {
-  console.log('🚀 Running sync job now...');
-  return await fetchAllDisasterData();
+	console.log("Running sync job now...");
+	return await fetchAllDisasterData();
 };
 
 /**
  * Stop the scheduled sync job
  */
 const stopSyncJob = () => {
-  if (syncJob) {
-    syncJob.stop();
-    console.log('⏹️  Sync job stopped');
-  }
+	if (syncJob) {
+		syncJob.stop();
+		console.log("⏹️  Sync job stopped");
+	}
 };
 
 /**
@@ -58,15 +58,14 @@ const stopSyncJob = () => {
  * @returns {object} Status
  */
 const getSyncJobStatus = () => {
-  return {
-    running: syncJob ? syncJob.running : false,
-  };
+	return {
+		running: syncJob ? syncJob.running : false,
+	};
 };
 
 module.exports = {
-  startSyncJob,
-  runSyncNow,
-  stopSyncJob,
-  getSyncJobStatus,
+	startSyncJob,
+	runSyncNow,
+	stopSyncJob,
+	getSyncJobStatus,
 };
-

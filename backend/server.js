@@ -1,16 +1,16 @@
-require('dotenv').config();
-const express = require('express');
-const cors = require('cors');
-const helmet = require('helmet');
-const logger = require('./middleware/logger');
-const { apiLimiter } = require('./middleware/rateLimiter');
-const { errorHandler, notFoundHandler } = require('./middleware/errorHandler');
+require("dotenv").config();
+const express = require("express");
+const cors = require("cors");
+const helmet = require("helmet");
+const logger = require("./middleware/logger");
+const { apiLimiter } = require("./middleware/rateLimiter");
+const { errorHandler, notFoundHandler } = require("./middleware/errorHandler");
 
 // Import routes
-const disasterRoutes = require('./routes/disasterRoutes');
-const authRoutes = require('./routes/authRoutes');
-const dataSyncRoutes = require('./routes/dataSyncRoutes');
-const snsSubscriptionRoutes = require('./routes/snsSubscriptionRoutes');
+const disasterRoutes = require("./routes/disasterRoutes");
+const authRoutes = require("./routes/authRoutes");
+const dataSyncRoutes = require("./routes/dataSyncRoutes");
+const snsSubscriptionRoutes = require("./routes/snsSubscriptionRoutes");
 
 // Initialize Express app
 const app = express();
@@ -25,19 +25,19 @@ app.use(logger); // Request logging
 app.use(apiLimiter); // API rate limiting
 
 // Health check endpoint
-app.get('/health', (req, res) => {
-  res.json({
-    success: true,
-    message: 'DIAS API is running',
-    timestamp: new Date().toISOString(),
-  });
+app.get("/health", (req, res) => {
+	res.json({
+		success: true,
+		message: "DIAS API is running",
+		timestamp: new Date().toISOString(),
+	});
 });
 
 // API Routes
-app.use('/api/disasters', disasterRoutes);
-app.use('/api/auth', authRoutes);
-app.use('/api/sync', dataSyncRoutes);
-app.use('/api/subscribe', snsSubscriptionRoutes);
+app.use("/api/disasters", disasterRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/sync", dataSyncRoutes);
+app.use("/api/subscribe", snsSubscriptionRoutes);
 
 // Error handling
 app.use(notFoundHandler); // 404 handler
@@ -45,14 +45,14 @@ app.use(errorHandler); // Error handler
 
 // Start server
 app.listen(PORT, () => {
-  console.log(`
+	console.log(`
 ╔════════════════════════════════════════════════════════╗
 ║          DIAS Backend Server                          ║
 ║                                                        ║
-║  ✅ Server running on http://localhost:${PORT}      ║
-║  ✅ Environment: ${process.env.NODE_ENV || 'development'}                     ║
+║  Server running on http://localhost:${PORT}      ║
+║  Environment: ${process.env.NODE_ENV || "development"}                     ║
 ║                                                        ║
-║  📡 API Endpoints:                                    ║
+║  API Endpoints:                                    ║
 ║     GET    /health                                   ║
 ║     GET    /api/disasters                            ║
 ║     GET    /api/disasters/:id                        ║
@@ -73,27 +73,28 @@ app.listen(PORT, () => {
     ╚════════════════════════════════════════════════════════╝
   `);
 
-  // Start sync job (optional - comment out to disable)
-  // console.log('Starting background data sync job...');
-  // Start scheduled jobs
-  const { startSyncJob } = require('./jobs/dataSyncJob');
-  startSyncJob('0 */6 * * *'); // Run every 6 hours
-  
-  const { startDisasterAlertJob } = require('./jobs/disasterAlertJob');
-  startDisasterAlertJob(); // Runs every 10 minutes
-  
-  console.log('\n💡 Tip: Start data sync manually via: POST /api/sync/all');
-  console.log('📧 AWS SNS alerts are enabled for country-specific subscriptions');
+	// Start sync job (optional - comment out to disable)
+	// console.log('Starting background data sync job...');
+	// Start scheduled jobs
+	const { startSyncJob } = require("./jobs/dataSyncJob");
+	startSyncJob("0 */6 * * *"); // Run every 6 hours
+
+	const { startDisasterAlertJob } = require("./jobs/disasterAlertJob");
+	startDisasterAlertJob(); // Runs every 10 minutes
+
+	console.log("\nTip: Start data sync manually via: POST /api/sync/all");
+	console.log(
+		"AWS SNS alerts are enabled for country-specific subscriptions"
+	);
 });
 
 // Graceful shutdown
-process.on('SIGTERM', () => {
-  console.log('SIGTERM signal received: closing HTTP server');
-  process.exit(0);
+process.on("SIGTERM", () => {
+	console.log("SIGTERM signal received: closing HTTP server");
+	process.exit(0);
 });
 
-process.on('SIGINT', () => {
-  console.log('SIGINT signal received: closing HTTP server');
-  process.exit(0);
+process.on("SIGINT", () => {
+	console.log("SIGINT signal received: closing HTTP server");
+	process.exit(0);
 });
-

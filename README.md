@@ -1,4 +1,4 @@
-# 🌍 DIAS - Disaster Information & Alert System
+# DIAS - Disaster Information & Alert System
 
 > **Real-time disaster monitoring and alert system** that tracks earthquakes, wildfires, floods, and tropical cyclones worldwide with automated email notifications.
 
@@ -9,114 +9,125 @@
 
 ---
 
-## 📋 Table of Contents
+## Table of Contents
 
-- [Features](#-features)
-- [Demo Screenshots](#-demo-screenshots)
-- [Tech Stack](#-tech-stack)
-- [Prerequisites](#-prerequisites)
-- [Installation Guide](#-installation-guide)
-  - [Option 1: Docker Setup (Recommended)](#-option-1-docker-setup-recommended)
-  - [Option 2: Local Development Setup](#-option-2-local-development-setup)
-- [Usage](#-usage)
-- [Project Structure](#-project-structure)
-- [API Documentation](#-api-documentation)
-- [Troubleshooting](#-troubleshooting)
-- [License](#-license)
+-   [Features](#-features)
+-   [Demo Screenshots](#-demo-screenshots)
+-   [Tech Stack](#-tech-stack)
+-   [Prerequisites](#-prerequisites)
+-   [Installation Guide](#-installation-guide)
+    -   [Option 1: Docker Setup (Recommended)](#-option-1-docker-setup-recommended)
+    -   [Option 2: Local Development Setup](#-option-2-local-development-setup)
+-   [Usage](#-usage)
+-   [Project Structure](#-project-structure)
+-   [API Documentation](#-api-documentation)
+-   [Troubleshooting](#-troubleshooting)
+-   [License](#-license)
 
 ---
 
-## ✨ Features
+## Features
 
-### 🗺️ **Interactive Disaster Map**
-- Real-time visualization of global disasters
-- Clustered markers for better performance
-- Color-coded severity indicators (Low, Moderate, High, Critical)
-- Detailed disaster information with external source links
-- Filter by disaster type and severity
+###️ **Interactive Disaster Map**
 
-### 📊 **Multi-Source Data Integration**
+-   Real-time visualization of global disasters
+-   Clustered markers for better performance
+-   Color-coded severity indicators (Low, Moderate, High, Critical)
+-   Detailed disaster information with external source links
+-   Filter by disaster type and severity
+
+### **Multi-Source Data Integration**
+
 DIAS aggregates disaster data from trusted sources:
-- **Earthquakes**: USGS (United States Geological Survey)
-- **Wildfires**: NASA FIRMS (Fire Information for Resource Management System)
-- **Floods**: European Flood Awareness System (EFAS)
-- **Tropical Cyclones**: NASA Tropical Cyclone Database
 
-### 📧 **Smart Alert System**
-- Subscribe to country-specific disaster alerts
-- Email notifications powered by AWS SNS
-- Automatic topic management (creates/deletes topics based on active disasters)
-- Support for both registered users and guest subscriptions
-- Instant alerts when new disasters are detected
+-   **Earthquakes**: USGS (United States Geological Survey)
+-   **Wildfires**: NASA FIRMS (Fire Information for Resource Management System)
+-   **Floods**: European Flood Awareness System (EFAS)
+-   **Tropical Cyclones**: NASA Tropical Cyclone Database
 
-### 🔐 **User Authentication**
-- Secure signup and login
-- JWT-based authentication
-- Password hashing with bcrypt
-- Protected routes and API endpoints
+### **Smart Alert System**
 
-### 📈 **Dashboard & Statistics**
-- Real-time disaster counts by type
-- Active disaster monitoring
-- Subscription management
-- Recent activity tracking
+-   Subscribe to country-specific disaster alerts
+-   Email notifications powered by AWS SNS
+-   Automatic topic management (creates/deletes topics based on active disasters)
+-   Support for both registered users and guest subscriptions
+-   Instant alerts when new disasters are detected
 
-### 🎨 **Modern User Interface**
-- Responsive design (mobile, tablet, desktop)
-- Dark/Light theme support
-- Smooth animations and transitions
-- Intuitive navigation
+### **User Authentication**
+
+-   Secure signup and login
+-   JWT-based authentication
+-   Password hashing with bcrypt
+-   Protected routes and API endpoints
+
+### **Dashboard & Statistics**
+
+-   Real-time disaster counts by type
+-   Active disaster monitoring
+-   Subscription management
+-   Recent activity tracking
+
+### **Modern User Interface**
+
+-   Responsive design (mobile, tablet, desktop)
+-   Dark/Light theme support
+-   Smooth animations and transitions
+-   Intuitive navigation
 
 ---
 
-## 📸 Demo Screenshots
+## Demo Screenshots
 
-*(Add screenshots of your app here once deployed)*
+_(Add screenshots of your app here once deployed)_
 
 ---
 
-## 🛠️ Tech Stack
+##️ Tech Stack
 
 ### **Frontend**
-- **React 18** - UI framework
-- **Vite** - Build tool and dev server
-- **Tailwind CSS** - Styling
-- **React Router** - Navigation
-- **Leaflet** - Interactive maps
-- **Axios** - HTTP client
-- **React Icons** - Icon library
+
+-   **React 18** - UI framework
+-   **Vite** - Build tool and dev server
+-   **Tailwind CSS** - Styling
+-   **React Router** - Navigation
+-   **Leaflet** - Interactive maps
+-   **Axios** - HTTP client
+-   **React Icons** - Icon library
 
 ### **Backend**
-- **Node.js** - Runtime environment
-- **Express.js** - Web framework
-- **PostgreSQL** - Database
-- **JWT** - Authentication
-- **Bcrypt** - Password hashing
-- **Node-cron** - Job scheduling
-- **Axios** - API requests
+
+-   **Node.js** - Runtime environment
+-   **Express.js** - Web framework
+-   **PostgreSQL** - Database
+-   **JWT** - Authentication
+-   **Bcrypt** - Password hashing
+-   **Node-cron** - Job scheduling
+-   **Axios** - API requests
 
 ### **Cloud Services**
-- **AWS SNS** - Email notifications
-- **AWS SDK v3** - AWS integration
+
+-   **AWS SNS** - Email notifications
+-   **AWS SDK v3** - AWS integration
 
 ### **DevOps**
-- **Docker** - Containerization
-- **Docker Compose** - Multi-container orchestration
+
+-   **Docker** - Containerization
+-   **Docker Compose** - Multi-container orchestration
 
 ---
 
-## 📦 Prerequisites
+## Prerequisites
 
 Before you begin, make sure you have the following installed on your system:
 
-| Tool | Version | Required For | Download |
-|------|---------|--------------|----------|
-| **Docker** | 20+ | 🐳 Docker Setup | [Download](https://www.docker.com/) |
-| **Node.js** | 18+ | 💻 Local Setup | [Download](https://nodejs.org/) |
-| **npm** | 9+ | 💻 Local Setup | (Comes with Node.js) |
-| **PostgreSQL** | 15+ | 💻 Local Setup | [Download](https://www.postgresql.org/download/) |
-| **Git** | Latest | Both | [Download](https://git-scm.com/) |
-| **AWS Account** | - | Both | [Sign Up](https://aws.amazon.com/) |
+| Tool            | Version | Required For | Download                                         |
+| --------------- | ------- | ------------ | ------------------------------------------------ |
+| **Docker**      | 20+     | Docker Setup | [Download](https://www.docker.com/)              |
+| **Node.js**     | 18+     | Local Setup  | [Download](https://nodejs.org/)                  |
+| **npm**         | 9+      | Local Setup  | (Comes with Node.js)                             |
+| **PostgreSQL**  | 15+     | Local Setup  | [Download](https://www.postgresql.org/download/) |
+| **Git**         | Latest  | Both         | [Download](https://git-scm.com/)                 |
+| **AWS Account** | -       | Both         | [Sign Up](https://aws.amazon.com/)               |
 
 ### **Check if you have them installed:**
 
@@ -136,27 +147,29 @@ psql --version  # Should show 15.x or higher
 git --version
 ```
 
-> **💡 Recommendation:** If you're new to DIAS or want the quickest setup, use **Docker** (Option 1). You only need Docker installed!
+> **Recommendation:** If you're new to DIAS or want the quickest setup, use **Docker** (Option 1). You only need Docker installed!
 
 ---
 
-## 🚀 Installation Guide
+## Installation Guide
 
 DIAS can be run in two ways:
-1. **🐳 Using Docker (Recommended)** - Easy setup, no local dependencies
-2. **💻 Local Development** - For development and customization
+
+1. **Using Docker (Recommended)** - Easy setup, no local dependencies
+2. **Local Development** - For development and customization
 
 Choose your preferred method:
 
 ---
 
-## 🐳 **Option 1: Docker Setup (Recommended)**
+## **Option 1: Docker Setup (Recommended)**
 
 The easiest way to run DIAS is using Docker. This method doesn't require you to install PostgreSQL, Node.js, or any other dependencies locally.
 
 ### **Prerequisites for Docker:**
-- **Docker** (v20.10+) - [Download](https://www.docker.com/get-started)
-- **Docker Compose** (usually comes with Docker Desktop) - [Download](https://docs.docker.com/compose/install/)
+
+-   **Docker** (v20.10+) - [Download](https://www.docker.com/get-started)
+-   **Docker Compose** (usually comes with Docker Desktop) - [Download](https://docs.docker.com/compose/install/)
 
 ### **Step 1: Clone the Repository**
 
@@ -210,9 +223,10 @@ docker compose up -d
 ```
 
 **That's it!** Your application is now running:
-- 🌐 **Frontend**: http://localhost:3000
-- 🔧 **Backend API**: http://localhost:5000
-- 🗄️ **PostgreSQL**: localhost:5432
+
+-   **Frontend**: http://localhost:3000
+-   **Backend API**: http://localhost:5000
+    -️ **PostgreSQL**: localhost:5432
 
 ### **Docker Commands Reference**
 
@@ -250,6 +264,7 @@ docker exec -it dias-postgres psql -U postgres -d dias
 ### **Docker Troubleshooting**
 
 **Issue: Port already in use**
+
 ```bash
 # Stop existing containers
 docker compose down
@@ -261,6 +276,7 @@ sudo lsof -ti:5432 | xargs kill -9
 ```
 
 **Issue: Containers won't start**
+
 ```bash
 # Check logs
 docker compose logs
@@ -273,7 +289,7 @@ docker compose up -d
 
 ---
 
-## 💻 **Option 2: Local Development Setup**
+## **Option 2: Local Development Setup**
 
 For development, customization, or if you prefer running services natively.
 
@@ -292,12 +308,14 @@ cd DIAS
 ### **Step 2: Install PostgreSQL**
 
 #### **For Windows:**
+
 1. Download PostgreSQL from [official website](https://www.postgresql.org/download/windows/)
 2. Run the installer
 3. Remember the password you set for the `postgres` user
 4. Keep the default port: `5432`
 
 #### **For macOS:**
+
 ```bash
 # Install using Homebrew
 brew install postgresql@15
@@ -307,6 +325,7 @@ brew services start postgresql@15
 ```
 
 #### **For Linux (Ubuntu/Debian):**
+
 ```bash
 # Update package list
 sudo apt update
@@ -326,11 +345,13 @@ sudo systemctl enable postgresql
 DIAS uses AWS SNS (Simple Notification Service) to send email alerts.
 
 #### **3.1 Create AWS Account**
+
 1. Go to [AWS Console](https://aws.amazon.com/)
 2. Click "Create an AWS Account"
 3. Complete the registration process
 
 #### **3.2 Create IAM User**
+
 1. Login to AWS Console
 2. Navigate to **IAM** (Identity and Access Management)
 3. Click **Users** → **Add users**
@@ -339,18 +360,21 @@ DIAS uses AWS SNS (Simple Notification Service) to send email alerts.
 6. Click **Next: Permissions**
 
 #### **3.3 Attach SNS Permissions**
+
 1. Click **Attach existing policies directly**
 2. Search for `AmazonSNSFullAccess`
 3. Check the box next to it
 4. Click **Next: Tags** → **Next: Review** → **Create user**
 
 #### **3.4 Save Credentials**
+
 1. **IMPORTANT:** Copy and save these credentials:
-   - `Access key ID` (example: AKIAIOSFODNN7EXAMPLE)
-   - `Secret access key` (example: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY)
+    - `Access key ID` (example: AKIAIOSFODNN7EXAMPLE)
+    - `Secret access key` (example: wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY)
 2. You won't be able to see the secret key again!
 
 #### **3.5 Verify Email (For Testing)**
+
 1. Go to **Amazon SES Console**
 2. Click **Verified identities** → **Create identity**
 3. Select **Email address**
@@ -395,21 +419,21 @@ DB_HOST=localhost
 DB_PORT=5432
 DB_NAME=dias
 DB_USER=postgres
-DB_PASSWORD=YOUR_POSTGRES_PASSWORD_HERE  # ⬅️ Change this!
+DB_PASSWORD=YOUR_POSTGRES_PASSWORD_HERE  #️ Change this!
 
 # ========================
 # JWT AUTHENTICATION
 # ========================
 # Generate a random secret: openssl rand -base64 32
-JWT_SECRET=your_super_secret_jwt_key_change_this  # ⬅️ Change this!
+JWT_SECRET=your_super_secret_jwt_key_change_this  #️ Change this!
 JWT_EXPIRES_IN=7d
 
 # ========================
 # AWS CONFIGURATION
 # ========================
 AWS_REGION=ap-south-1  # Mumbai region (or change to your preferred region)
-AWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE  # ⬅️ Your AWS Access Key
-AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/...  # ⬅️ Your AWS Secret Key
+AWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE  #️ Your AWS Access Key
+AWS_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/...  #️ Your AWS Secret Key
 
 # ========================
 # CORS CONFIGURATION
@@ -418,10 +442,11 @@ FRONTEND_URL=http://localhost:5173
 ```
 
 **Important fields to update:**
-- `DB_PASSWORD` - Your PostgreSQL password
-- `JWT_SECRET` - Generate using: `openssl rand -base64 32`
-- `AWS_ACCESS_KEY_ID` - From AWS IAM user creation
-- `AWS_SECRET_ACCESS_KEY` - From AWS IAM user creation
+
+-   `DB_PASSWORD` - Your PostgreSQL password
+-   `JWT_SECRET` - Generate using: `openssl rand -base64 32`
+-   `AWS_ACCESS_KEY_ID` - From AWS IAM user creation
+-   `AWS_SECRET_ACCESS_KEY` - From AWS IAM user creation
 
 ```bash
 # Return to project root
@@ -483,6 +508,7 @@ psql -U postgres -d dias -f backend/config/sns-schema.sql
 ```
 
 **Expected output:**
+
 ```
 CREATE TABLE
 CREATE TABLE
@@ -530,12 +556,14 @@ chmod +x start.sh stop.sh
 ```
 
 This will automatically:
-- ✅ Check if PostgreSQL is running
-- ✅ Start the backend server (port 5000)
-- ✅ Start the frontend dev server (port 5173)
-- ✅ Initialize scheduled jobs (data sync, alerts)
+
+-   Check if PostgreSQL is running
+-   Start the backend server (port 5000)
+-   Start the frontend dev server (port 5173)
+-   Initialize scheduled jobs (data sync, alerts)
 
 **To stop all services:**
+
 ```bash
 ./stop.sh
 ```
@@ -545,12 +573,14 @@ This will automatically:
 If you prefer to run services manually:
 
 **Terminal 1 - Start Backend:**
+
 ```bash
 cd backend
 npm run dev
 ```
 
 **Terminal 2 - Start Frontend:**
+
 ```bash
 # Open a new terminal
 cd /path/to/DIAS
@@ -559,55 +589,59 @@ npm run dev
 
 ---
 
-### **🎉 Success! Your application is now running:**
+### **Success! Your application is now running:**
 
-- **Frontend:** http://localhost:5173
-- **Backend API:** http://localhost:5000
-- **Database:** localhost:5432
+-   **Frontend:** http://localhost:5173
+-   **Backend API:** http://localhost:5000
+-   **Database:** localhost:5432
 
 ---
 
-## 📖 Usage
+## Usage
 
 ### **First Steps**
 
 1. **Open the application** in your browser: `http://localhost:5173`
 
 2. **Create an account:**
-   - Click "Sign Up" in the header
-   - Enter your details (name, email, password)
-   - Click "Create Account"
+
+    - Click "Sign Up" in the header
+    - Enter your details (name, email, password)
+    - Click "Create Account"
 
 3. **Sync disaster data:**
-   - Go to "Live Map" page
-   - Click the "Sync Data" button
-   - Wait for the data to load (may take 30-60 seconds)
-   - The map will populate with real disaster data
+
+    - Go to "Live Map" page
+    - Click the "Sync Data" button
+    - Wait for the data to load (may take 30-60 seconds)
+    - The map will populate with real disaster data
 
 4. **Subscribe to alerts:**
-   - Click "Subscribe" in the header
-   - Select a country from the dropdown
-   - Enter your email
-   - Click "Subscribe"
-   - Check your email for AWS SNS confirmation
-   - Click the confirmation link in the email
+
+    - Click "Subscribe" in the header
+    - Select a country from the dropdown
+    - Enter your email
+    - Click "Subscribe"
+    - Check your email for AWS SNS confirmation
+    - Click the confirmation link in the email
 
 5. **Monitor disasters:**
-   - View the interactive map
-   - Click on markers to see disaster details
-   - Filter by disaster type or severity
+    - View the interactive map
+    - Click on markers to see disaster details
+    - Filter by disaster type or severity
 
 ### **Automated Features**
 
 Once running, DIAS automatically:
-- ✅ Syncs disaster data every 10 minutes
-- ✅ Detects new disasters
-- ✅ Sends email alerts to subscribed users
-- ✅ Creates/deletes SNS topics based on active disasters
+
+-   Syncs disaster data every 10 minutes
+-   Detects new disasters
+-   Sends email alerts to subscribed users
+-   Creates/deletes SNS topics based on active disasters
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 DIAS/
@@ -701,53 +735,60 @@ DIAS/
 
 ---
 
-## 🔌 API Documentation
+## API Documentation
 
 ### **Authentication Endpoints**
 
 #### **POST** `/api/auth/signup`
+
 Register a new user.
 
 **Request:**
+
 ```json
 {
-  "name": "John Doe",
-  "email": "john@example.com",
-  "password": "securePassword123"
+	"name": "John Doe",
+	"email": "john@example.com",
+	"password": "securePassword123"
 }
 ```
 
 **Response:**
+
 ```json
 {
-  "success": true,
-  "message": "User registered successfully",
-  "data": {
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
-    "user": {
-      "id": 1,
-      "name": "John Doe",
-      "email": "john@example.com"
-    }
-  }
+	"success": true,
+	"message": "User registered successfully",
+	"data": {
+		"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+		"user": {
+			"id": 1,
+			"name": "John Doe",
+			"email": "john@example.com"
+		}
+	}
 }
 ```
 
 #### **POST** `/api/auth/login`
+
 Login an existing user.
 
 **Request:**
+
 ```json
 {
-  "email": "john@example.com",
-  "password": "securePassword123"
+	"email": "john@example.com",
+	"password": "securePassword123"
 }
 ```
 
 #### **GET** `/api/auth/me`
+
 Get current user info (requires authentication).
 
 **Headers:**
+
 ```
 Authorization: Bearer <token>
 ```
@@ -757,46 +798,52 @@ Authorization: Bearer <token>
 ### **Disaster Endpoints**
 
 #### **GET** `/api/disasters`
+
 Get all disasters with optional filters.
 
 **Query Parameters:**
-- `type` - Filter by type (earthquake, fire, flood, cyclone)
-- `severity` - Filter by severity (low, moderate, high, critical)
-- `is_active` - Filter by active status (true, false)
-- `limit` - Number of results (default: 100)
-- `offset` - Pagination offset
+
+-   `type` - Filter by type (earthquake, fire, flood, cyclone)
+-   `severity` - Filter by severity (low, moderate, high, critical)
+-   `is_active` - Filter by active status (true, false)
+-   `limit` - Number of results (default: 100)
+-   `offset` - Pagination offset
 
 **Example:**
+
 ```bash
 GET /api/disasters?type=earthquake&severity=high&limit=20
 ```
 
 #### **GET** `/api/disasters/:id`
+
 Get a specific disaster by ID.
 
 #### **GET** `/api/disasters/stats`
+
 Get disaster statistics.
 
 **Response:**
+
 ```json
 {
-  "success": true,
-  "data": {
-    "total": 156,
-    "active": 89,
-    "byType": {
-      "earthquake": 45,
-      "fire": 23,
-      "flood": 12,
-      "cyclone": 9
-    },
-    "bySeverity": {
-      "low": 34,
-      "moderate": 28,
-      "high": 18,
-      "critical": 9
-    }
-  }
+	"success": true,
+	"data": {
+		"total": 156,
+		"active": 89,
+		"byType": {
+			"earthquake": 45,
+			"fire": 23,
+			"flood": 12,
+			"cyclone": 9
+		},
+		"bySeverity": {
+			"low": 34,
+			"moderate": 28,
+			"high": 18,
+			"critical": 9
+		}
+	}
 }
 ```
 
@@ -805,21 +852,27 @@ Get disaster statistics.
 ### **Data Sync Endpoints**
 
 #### **POST** `/api/sync/all`
+
 Sync all disaster types.
 
 #### **POST** `/api/sync/earthquakes`
+
 Sync only earthquakes.
 
 #### **POST** `/api/sync/fires`
+
 Sync only fires.
 
 #### **POST** `/api/sync/floods`
+
 Sync only floods.
 
 #### **POST** `/api/sync/cyclones`
+
 Sync only cyclones.
 
 **Example:**
+
 ```bash
 curl -X POST http://localhost:5000/api/sync/all
 ```
@@ -829,79 +882,87 @@ curl -X POST http://localhost:5000/api/sync/all
 ### **Subscription Endpoints**
 
 #### **POST** `/api/subscribe`
+
 Subscribe to country-specific alerts.
 
 **Request:**
+
 ```json
 {
-  "email": "user@example.com",
-  "country": "India"
+	"email": "user@example.com",
+	"country": "India"
 }
 ```
 
 **Response:**
+
 ```json
 {
-  "success": true,
-  "message": "Subscription created. Please check your email to confirm.",
-  "data": {
-    "id": 1,
-    "country": "India",
-    "status": "pending confirmation"
-  }
+	"success": true,
+	"message": "Subscription created. Please check your email to confirm.",
+	"data": {
+		"id": 1,
+		"country": "India",
+		"status": "pending confirmation"
+	}
 }
 ```
 
 #### **GET** `/api/subscribe/my-subscriptions?email=user@example.com`
+
 Get user's subscriptions.
 
 #### **DELETE** `/api/subscribe/:id?email=user@example.com`
+
 Unsubscribe from alerts.
 
 #### **GET** `/api/subscribe/available-countries`
+
 Get list of countries with active disasters.
 
 **Response:**
+
 ```json
 {
-  "success": true,
-  "data": [
-    { "country": "India", "disaster_count": 5 },
-    { "country": "Japan", "disaster_count": 12 },
-    { "country": "USA", "disaster_count": 8 }
-  ]
+	"success": true,
+	"data": [
+		{ "country": "India", "disaster_count": 5 },
+		{ "country": "Japan", "disaster_count": 12 },
+		{ "country": "USA", "disaster_count": 8 }
+	]
 }
 ```
 
 ---
 
-## 🔧 Configuration
+## Configuration
 
 ### **Environment Variables**
 
 All configuration is done in `backend/.env`:
 
-| Variable | Description | Default | Required |
-|----------|-------------|---------|----------|
-| `PORT` | Backend server port | 5000 | No |
-| `NODE_ENV` | Environment | development | No |
-| `DB_HOST` | PostgreSQL host | localhost | Yes |
-| `DB_PORT` | PostgreSQL port | 5432 | Yes |
-| `DB_NAME` | Database name | dias | Yes |
-| `DB_USER` | Database user | postgres | Yes |
-| `DB_PASSWORD` | Database password | - | Yes |
-| `JWT_SECRET` | JWT signing secret | - | Yes |
-| `JWT_EXPIRES_IN` | JWT expiration | 7d | No |
-| `AWS_REGION` | AWS region | ap-south-1 | Yes |
-| `AWS_ACCESS_KEY_ID` | AWS access key | - | Yes |
-| `AWS_SECRET_ACCESS_KEY` | AWS secret key | - | Yes |
-| `FRONTEND_URL` | Frontend URL (CORS) | http://localhost:5173 | Yes |
+| Variable                | Description         | Default               | Required |
+| ----------------------- | ------------------- | --------------------- | -------- |
+| `PORT`                  | Backend server port | 5000                  | No       |
+| `NODE_ENV`              | Environment         | development           | No       |
+| `DB_HOST`               | PostgreSQL host     | localhost             | Yes      |
+| `DB_PORT`               | PostgreSQL port     | 5432                  | Yes      |
+| `DB_NAME`               | Database name       | dias                  | Yes      |
+| `DB_USER`               | Database user       | postgres              | Yes      |
+| `DB_PASSWORD`           | Database password   | -                     | Yes      |
+| `JWT_SECRET`            | JWT signing secret  | -                     | Yes      |
+| `JWT_EXPIRES_IN`        | JWT expiration      | 7d                    | No       |
+| `AWS_REGION`            | AWS region          | ap-south-1            | Yes      |
+| `AWS_ACCESS_KEY_ID`     | AWS access key      | -                     | Yes      |
+| `AWS_SECRET_ACCESS_KEY` | AWS secret key      | -                     | Yes      |
+| `FRONTEND_URL`          | Frontend URL (CORS) | http://localhost:5173 | Yes      |
 
 ### **Job Schedules**
 
 You can modify the job schedules in:
-- `backend/jobs/dataSyncJob.js` - Data sync frequency
-- `backend/jobs/disasterAlertJob.js` - Alert check frequency
+
+-   `backend/jobs/dataSyncJob.js` - Data sync frequency
+-   `backend/jobs/disasterAlertJob.js` - Alert check frequency
 
 Default: Every 10 minutes (`*/10 * * * *`)
 
@@ -913,7 +974,7 @@ Configure in: `backend/middleware/rateLimiter.js`
 
 ---
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### **Common Issues**
 
@@ -922,6 +983,7 @@ Configure in: `backend/middleware/rateLimiter.js`
 **Error:** `EADDRINUSE: address already in use :::5000`
 
 **Solution:**
+
 ```bash
 # Kill process on port 5000
 lsof -ti:5000 | xargs kill -9
@@ -935,6 +997,7 @@ lsof -ti:5000 | xargs kill -9
 **Error:** `connection refused` or `password authentication failed`
 
 **Solutions:**
+
 ```bash
 # Check if PostgreSQL is running
 sudo systemctl status postgresql  # Linux
@@ -953,18 +1016,21 @@ brew services start postgresql@15 # macOS
 **Error:** `The security token included in the request is invalid`
 
 **Solutions:**
-- Verify `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` in `backend/.env`
-- Check IAM user has `AmazonSNSFullAccess` policy
-- Ensure AWS region matches (`AWS_REGION=ap-south-1`)
+
+-   Verify `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` in `backend/.env`
+-   Check IAM user has `AmazonSNSFullAccess` policy
+-   Ensure AWS region matches (`AWS_REGION=ap-south-1`)
 
 #### **4. Email Not Received**
 
 **Possible causes:**
-- Email in spam/junk folder
-- Email not verified in SES (for development)
-- AWS account in SES sandbox mode
+
+-   Email in spam/junk folder
+-   Email not verified in SES (for development)
+-   AWS account in SES sandbox mode
 
 **Solutions:**
+
 1. Check spam folder
 2. Verify email in AWS SES Console
 3. Request production access for SES
@@ -972,14 +1038,16 @@ brew services start postgresql@15 # macOS
 #### **5. Map Not Loading**
 
 **Solutions:**
-- Check browser console for errors
-- Ensure backend is running and accessible
-- Click "Sync Data" button on map page
-- Check network tab for failed API calls
+
+-   Check browser console for errors
+-   Ensure backend is running and accessible
+-   Click "Sync Data" button on map page
+-   Check network tab for failed API calls
 
 #### **6. No Disasters Showing**
 
 **Solution:**
+
 ```bash
 # Manually sync disasters
 curl -X POST http://localhost:5000/api/sync/all
@@ -992,79 +1060,86 @@ tail -f logs/app.log  # if logging is enabled
 ### **Getting Help**
 
 If you're still stuck:
+
 1. Check the browser console (F12) for errors
 2. Check backend terminal for error messages
 3. Review the configuration in `backend/.env`
 4. Open an issue on GitHub with:
-   - Error message
-   - Steps to reproduce
-   - Your environment (OS, Node version, etc.)
+    - Error message
+    - Steps to reproduce
+    - Your environment (OS, Node version, etc.)
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 We welcome contributions! Here's how you can help:
 
 ### **How to Contribute**
 
 1. **Fork the repository**
-   ```bash
-   # Click "Fork" on GitHub
-   ```
+
+    ```bash
+    # Click "Fork" on GitHub
+    ```
 
 2. **Clone your fork**
-   ```bash
-   git clone https://github.com/YOUR_USERNAME/DIAS.git
-   cd DIAS
-   ```
+
+    ```bash
+    git clone https://github.com/YOUR_USERNAME/DIAS.git
+    cd DIAS
+    ```
 
 3. **Create a feature branch**
-   ```bash
-   git checkout -b feature/amazing-feature
-   ```
+
+    ```bash
+    git checkout -b feature/amazing-feature
+    ```
 
 4. **Make your changes**
-   - Write clean, commented code
-   - Follow existing code style
-   - Test your changes thoroughly
+
+    - Write clean, commented code
+    - Follow existing code style
+    - Test your changes thoroughly
 
 5. **Commit your changes**
-   ```bash
-   git add .
-   git commit -m "Add amazing feature"
-   ```
+
+    ```bash
+    git add .
+    git commit -m "Add amazing feature"
+    ```
 
 6. **Push to your fork**
-   ```bash
-   git push origin feature/amazing-feature
-   ```
+
+    ```bash
+    git push origin feature/amazing-feature
+    ```
 
 7. **Open a Pull Request**
-   - Go to the original repository
-   - Click "New Pull Request"
-   - Describe your changes
+    - Go to the original repository
+    - Click "New Pull Request"
+    - Describe your changes
 
 ### **Coding Guidelines**
 
-- Use meaningful variable and function names
-- Comment complex logic
-- Follow existing code structure
-- Update documentation for new features
-- Write clean commit messages
+-   Use meaningful variable and function names
+-   Comment complex logic
+-   Follow existing code structure
+-   Update documentation for new features
+-   Write clean commit messages
 
 ### **What to Contribute**
 
-- 🐛 Bug fixes
-- ✨ New features
-- 📝 Documentation improvements
-- 🎨 UI/UX enhancements
-- ⚡ Performance optimizations
-- 🧪 Test coverage
+-   Bug fixes
+-   New features
+-   Documentation improvements
+-   UI/UX enhancements
+-   Performance optimizations
+-   Test coverage
 
 ---
 
-## 📄 License
+## License
 
 This project is licensed under the **MIT License**.
 
@@ -1094,64 +1169,69 @@ SOFTWARE.
 
 ---
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 DIAS is made possible by these amazing data providers and technologies:
 
 ### **Data Providers**
-- **[USGS](https://www.usgs.gov/)** - United States Geological Survey (Earthquake data)
-- **[NASA FIRMS](https://firms.modaps.eosdis.nasa.gov/)** - Fire Information for Resource Management System
-- **[EFAS](https://www.efas.eu/)** - European Flood Awareness System
-- **[NASA](https://www.nasa.gov/)** - Tropical Cyclone Database
+
+-   **[USGS](https://www.usgs.gov/)** - United States Geological Survey (Earthquake data)
+-   **[NASA FIRMS](https://firms.modaps.eosdis.nasa.gov/)** - Fire Information for Resource Management System
+-   **[EFAS](https://www.efas.eu/)** - European Flood Awareness System
+-   **[NASA](https://www.nasa.gov/)** - Tropical Cyclone Database
 
 ### **Technologies**
-- **[React](https://react.dev/)** - Frontend framework
-- **[Node.js](https://nodejs.org/)** - JavaScript runtime
-- **[Express](https://expressjs.com/)** - Web framework
-- **[PostgreSQL](https://www.postgresql.org/)** - Database
-- **[AWS SNS](https://aws.amazon.com/sns/)** - Notification service
-- **[Leaflet](https://leafletjs.com/)** - Interactive maps
-- **[Tailwind CSS](https://tailwindcss.com/)** - CSS framework
+
+-   **[React](https://react.dev/)** - Frontend framework
+-   **[Node.js](https://nodejs.org/)** - JavaScript runtime
+-   **[Express](https://expressjs.com/)** - Web framework
+-   **[PostgreSQL](https://www.postgresql.org/)** - Database
+-   **[AWS SNS](https://aws.amazon.com/sns/)** - Notification service
+-   **[Leaflet](https://leafletjs.com/)** - Interactive maps
+-   **[Tailwind CSS](https://tailwindcss.com/)** - CSS framework
 
 ### **Special Thanks**
-- All contributors who help improve DIAS
-- The open-source community
-- Disaster management organizations worldwide
+
+-   All contributors who help improve DIAS
+-   The open-source community
+-   Disaster management organizations worldwide
 
 ---
 
-## 📞 Support & Contact
+## Support & Contact
 
 ### **Need Help?**
-- 📖 Read the [Troubleshooting](#-troubleshooting) section
-- 💬 Open an [Issue](https://github.com/yourusername/DIAS/issues) on GitHub
-- 📧 Email: support@dias-project.com *(update with your email)*
+
+-   Read the [Troubleshooting](#-troubleshooting) section
+-   Open an [Issue](https://github.com/yourusername/DIAS/issues) on GitHub
+-   Email: support@dias-project.com _(update with your email)_
 
 ### **Stay Updated**
-- ⭐ Star this repository to show support
-- 👀 Watch for updates
-- 🔔 Subscribe to releases
+
+-   Star this repository to show support
+-   Watch for updates
+-   Subscribe to releases
 
 ---
 
-## 🗺️ Roadmap
+##️ Roadmap
 
 Future enhancements planned for DIAS:
 
-- [ ] Mobile app (React Native)
-- [ ] SMS alerts via AWS SNS
-- [ ] Historical disaster data analysis
-- [ ] Predictive disaster modeling
-- [ ] Multi-language support
-- [ ] Advanced filtering and search
-- [ ] Disaster impact assessment
-- [ ] Integration with more data sources
-- [ ] Public API for developers
-- [ ] Community disaster reporting
+-   [ ] Mobile app (React Native)
+-   [ ] SMS alerts via AWS SNS
+-   [ ] Historical disaster data analysis
+-   [ ] Predictive disaster modeling
+-   [ ] Multi-language support
+-   [ ] Advanced filtering and search
+-   [ ] Disaster impact assessment
+-   [ ] Integration with more data sources
+-   [ ] Public API for developers
+-   [ ] Community disaster reporting
 
 ---
 
-## 📊 System Architecture
+## System Architecture
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
@@ -1226,10 +1306,10 @@ Future enhancements planned for DIAS:
 
 <div align="center">
 
-## 🎯 **DIAS - Keeping you informed, keeping you safe.**
+## **DIAS - Keeping you informed, keeping you safe.**
 
-### **Made with ❤️ for disaster awareness and safety**
+### **Made with️ for disaster awareness and safety**
 
-[⬆ Back to Top](#-dias---disaster-information--alert-system)
+[Back to Top](#-dias---disaster-information--alert-system)
 
 </div>

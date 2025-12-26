@@ -10,7 +10,7 @@ BOLD='\033[1m'
 NC='\033[0m' # No Color
 
 print_step() {
-    echo -e "${BLUE}▶ $1${NC}"
+    echo -e "${BLUE}$1${NC}"
 }
 
 print_success() {
@@ -18,7 +18,7 @@ print_success() {
 }
 
 print_warning() {
-    echo -e "${YELLOW}⚠ $1${NC}"
+    echo -e "${YELLOW}$1${NC}"
 }
 
 print_error() {
@@ -26,7 +26,7 @@ print_error() {
 }
 
 print_info() {
-    echo -e "${CYAN}ℹ $1${NC}"
+    echo -e "${CYAN}$1${NC}"
 }
 
 show_help() {
@@ -73,7 +73,7 @@ main() {
     done
     
     echo ""
-    print_info "🛑 Stopping DIAS Docker Containers"
+    print_info "Stopping DIAS Docker Containers"
     echo ""
     
     # Try both compose files

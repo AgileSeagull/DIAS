@@ -15,12 +15,12 @@ echo ""
 
 # Check if Docker is installed
 if ! command -v docker &> /dev/null; then
-    echo "❌ Docker is not installed!"
+    echo "Docker is not installed!"
     echo "Please install Docker from: https://www.docker.com/"
     exit 1
 fi
 
-echo -e "${GREEN}✅ Docker is installed${NC}"
+echo -e "${GREEN}Docker is installed${NC}"
 echo ""
 
 # Check if containers are already running
@@ -54,12 +54,12 @@ sleep 5
 
 echo ""
 echo "========================================="
-echo -e "${GREEN}✅ DIAS is now running!${NC}"
+echo -e "${GREEN}DIAS is now running!${NC}"
 echo "========================================="
 echo ""
 echo "Access your application:"
-echo "  🌐 Frontend: http://localhost:3000"
-echo "  🔌 Backend:  http://localhost:5000"
+echo "  Frontend: http://localhost:3000"
+echo "  Backend:  http://localhost:5000"
 echo ""
 echo "Useful commands:"
 echo "  View logs:  docker compose logs -f"

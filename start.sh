@@ -21,7 +21,7 @@ MAX_RETRIES=30
 STARTUP_WAIT=8
 
 print_step() {
-    echo -e "${BLUE}${BOLD}▶ $1${NC}"
+    echo -e "${BLUE}${BOLD}$1${NC}"
 }
 
 print_success() {
@@ -29,7 +29,7 @@ print_success() {
 }
 
 print_warning() {
-    echo -e "${YELLOW}⚠ $1${NC}"
+    echo -e "${YELLOW}$1${NC}"
 }
 
 print_error() {
@@ -37,7 +37,7 @@ print_error() {
 }
 
 print_info() {
-    echo -e "${CYAN}ℹ $1${NC}"
+    echo -e "${CYAN}$1${NC}"
 }
 
 # Check if command exists
@@ -317,14 +317,14 @@ print_success_message() {
     echo ""
     echo -e "${GREEN}${BOLD}╔════════════════════════════════════════════════════════════╗${NC}"
     echo -e "${GREEN}${BOLD}║                                                            ║${NC}"
-    echo -e "${GREEN}${BOLD}║              🎉  DIAS is now running!  🎉                 ║${NC}"
+    echo -e "${GREEN}${BOLD}║               DIAS is now running!                  ║${NC}"
     echo -e "${GREEN}${BOLD}║                                                            ║${NC}"
     echo -e "${GREEN}${BOLD}╚════════════════════════════════════════════════════════════╝${NC}"
     echo ""
     echo -e "${BOLD}Access Points:${NC}"
-    echo -e "  ${CYAN}🌐 Frontend:${NC}  http://localhost:$FRONTEND_PORT"
-    echo -e "  ${CYAN}🔌 Backend:${NC}   http://localhost:$BACKEND_PORT"
-    echo -e "  ${CYAN}🐘 Database:${NC}  localhost:$DB_PORT"
+    echo -e "  ${CYAN}Frontend:${NC}  http://localhost:$FRONTEND_PORT"
+    echo -e "  ${CYAN}Backend:${NC}   http://localhost:$BACKEND_PORT"
+    echo -e "  ${CYAN}Database:${NC}  localhost:$DB_PORT"
     echo ""
     echo -e "${BOLD}Quick Tips:${NC}"
     echo -e "  • Visit the ${MAGENTA}Live Map${NC} page to see disaster locations"
@@ -375,7 +375,7 @@ trap cleanup SIGINT SIGTERM
 main() {
     clear
     echo ""
-    print_info "🌍 DIAS - Disaster Information & Alert System"
+    print_info "DIAS - Disaster Information & Alert System"
     echo ""
     
     preflight_checks

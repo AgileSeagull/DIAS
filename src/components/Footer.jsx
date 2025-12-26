@@ -46,7 +46,7 @@ const Footer = () => {
         <div className="border-t border-gray-200 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center text-sm text-gray-600">
             <p>
-              © {currentYear} DIAS - Disaster Information & Alert System. All rights reserved.
+              {currentYear} DIAS - Disaster Information & Alert System. All rights reserved.
             </p>
           </div>
         </div>

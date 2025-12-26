@@ -13,7 +13,7 @@ BOLD='\033[1m'
 NC='\033[0m' # No Color
 
 print_step() {
-    echo -e "${BLUE}${BOLD}▶ $1${NC}"
+    echo -e "${BLUE}${BOLD}$1${NC}"
 }
 
 print_success() {
@@ -21,7 +21,7 @@ print_success() {
 }
 
 print_warning() {
-    echo -e "${YELLOW}⚠ $1${NC}"
+    echo -e "${YELLOW}$1${NC}"
 }
 
 print_error() {
@@ -29,7 +29,7 @@ print_error() {
 }
 
 print_info() {
-    echo -e "${CYAN}ℹ $1${NC}"
+    echo -e "${CYAN}$1${NC}"
 }
 
 show_help() {
@@ -80,7 +80,7 @@ main() {
     
     clear
     echo ""
-    print_info "🌍 DIAS - Disaster Information & Alert System (Docker)"
+    print_info "DIAS - Disaster Information & Alert System (Docker)"
     echo ""
     
     # Check if Docker is installed
@@ -145,14 +145,14 @@ main() {
     # Display access points
     echo -e "${GREEN}${BOLD}╔════════════════════════════════════════════════════════════╗${NC}"
     echo -e "${GREEN}${BOLD}║                                                            ║${NC}"
-    echo -e "${GREEN}${BOLD}║              🐳  DIAS is now running!  🐳                 ║${NC}"
+    echo -e "${GREEN}${BOLD}║               DIAS is now running!                  ║${NC}"
     echo -e "${GREEN}${BOLD}║                                                            ║${NC}"
     echo -e "${GREEN}${BOLD}╚════════════════════════════════════════════════════════════╝${NC}"
     echo ""
     echo -e "${BOLD}Access Points:${NC}"
-    echo -e "  ${CYAN}🌐 Frontend:${NC}  $FRONTEND_URL"
-    echo -e "  ${CYAN}🔌 Backend:${NC}   http://localhost:5000"
-    echo -e "  ${CYAN}🐘 Database:${NC}  localhost:5432"
+    echo -e "  ${CYAN}Frontend:${NC}  $FRONTEND_URL"
+    echo -e "  ${CYAN}Backend:${NC}   http://localhost:5000"
+    echo -e "  ${CYAN}Database:${NC}  localhost:5432"
     echo ""
     
     if [ "$dev_mode" = true ]; then

@@ -79,9 +79,9 @@ const DisasterMap = ({ disasters, isLoading }) => {
 
   const [disasterTypes] = useState([
     { value: 'all', label: 'All Disasters', color: '#6B7280' },
-    { value: 'earthquake', label: '🌋 Earthquakes', color: '#EF4444' },
-    { value: 'flood', label: '🌊 Floods', color: '#3B82F6' },
-    { value: 'fire', label: '🔥 Wildfires', color: '#F97316' },
+    { value: 'earthquake', label: 'Earthquakes', color: '#EF4444' },
+    { value: 'flood', label: 'Floods', color: '#3B82F6' },
+    { value: 'fire', label: 'Wildfires', color: '#F97316' },
     { value: 'cyclone', label: '🌪️ Cyclones', color: '#8B5CF6' },
   ]);
 
