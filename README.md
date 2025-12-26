@@ -11,24 +11,28 @@
 
 ## Table of Contents
 
--   [Features](#-features)
--   [Demo Screenshots](#-demo-screenshots)
--   [Tech Stack](#-tech-stack)
--   [Prerequisites](#-prerequisites)
--   [Installation Guide](#-installation-guide)
-    -   [Option 1: Docker Setup (Recommended)](#-option-1-docker-setup-recommended)
-    -   [Option 2: Local Development Setup](#-option-2-local-development-setup)
--   [Usage](#-usage)
--   [Project Structure](#-project-structure)
--   [API Documentation](#-api-documentation)
--   [Troubleshooting](#-troubleshooting)
--   [License](#-license)
+-   [Features](#features)
+-   [Demo Screenshots](#demo-screenshots)
+-   [Tech Stack](#tech-stack)
+-   [Prerequisites](#prerequisites)
+-   [Installation Guide](#installation-guide)
+    -   [Option 1: Docker Setup (Recommended)](#option-1-docker-setup-recommended)
+    -   [Option 2: Local Development Setup](#option-2-local-development-setup)
+-   [Usage](#usage)
+-   [Project Structure](#project-structure)
+-   [API Documentation](#api-documentation)
+-   [Configuration](#configuration)
+-   [Troubleshooting](#troubleshooting)
+-   [Contributing](#contributing)
+-   [License](#license)
+-   [Acknowledgments](#acknowledgments)
+-   [System Architecture](#system-architecture)
 
 ---
 
 ## Features
 
-###️ **Interactive Disaster Map**
+### **Interactive Disaster Map**
 
 -   Real-time visualization of global disasters
 -   Clustered markers for better performance
@@ -78,11 +82,47 @@ DIAS aggregates disaster data from trusted sources:
 
 ## Demo Screenshots
 
-_(Add screenshots of your app here once deployed)_
+### **Dashboard**
+
+![Dashboard](./images/Dashboard.jpeg)
+
+**Highlights**
+
+-   Overview of active disasters by type and severity
+-   Quick stats and recent activity
+-   Entry points to map, subscriptions, and alerts
+
+### **Live Map**
+
+![Live Map](./images/Live%20Map.jpeg)
+
+**Highlights**
+
+-   Real-time, interactive global disaster map
+-   Clustered markers with color-coded severity
+-   Filters for disaster type and severity
+
+### **Subscription Management**
+
+![Subscription](./images/Subscription.jpeg)
+
+**Highlights**
+
+-   Simple flow to subscribe to country-specific alerts
+-   Email-based confirmation powered by AWS SNS
+
+### **Flood Alert Email**
+
+![Flood Mail](./images/Flood%20Mail.jpeg)
+
+**Highlights**
+
+-   Example of automated flood alert email
+-   Includes disaster details and affected region
 
 ---
 
-##️ Tech Stack
+## Tech Stack
 
 ### **Frontend**
 
