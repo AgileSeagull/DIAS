@@ -14,6 +14,7 @@
 -   [Features](#features)
 -   [Demo Screenshots](#demo-screenshots)
 -   [Tech Stack](#tech-stack)
+-   [System Architecture](#system-architecture)
 -   [Prerequisites](#prerequisites)
 -   [Installation Guide](#installation-guide)
     -   [Option 1: Docker Setup (Recommended)](#option-1-docker-setup-recommended)
@@ -26,7 +27,6 @@
 -   [Contributing](#contributing)
 -   [License](#license)
 -   [Acknowledgments](#acknowledgments)
--   [System Architecture](#system-architecture)
 
 ---
 
@@ -153,6 +153,12 @@ DIAS aggregates disaster data from trusted sources:
 
 -   **Docker** - Containerization
 -   **Docker Compose** - Multi-container orchestration
+
+---
+
+## System Architecture
+
+![Architecture](./images/Architecture.png)
 
 ---
 
@@ -1235,9 +1241,3 @@ DIAS is made possible by these amazing data providers and technologies:
 -   All contributors who help improve DIAS
 -   The open-source community
 -   Disaster management organizations worldwide
-
----
-
-## System Architecture
-
-![Architecture](./images/Architecture.png)
